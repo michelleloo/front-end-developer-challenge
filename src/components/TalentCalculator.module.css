@@ -1,0 +1,27 @@
+.calculatorContainer {
+  background-size: auto;
+  background-image: url("/talent-calc-bg.png");
+  margin: 1rem;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+.titleWrapper {
+  background-color: #1a1a1a;
+  padding: 1rem;
+}
+.titleWrapper h1 {
+  height: 100%;
+  text-align: center;
+  font-size: 25px;
+}
+.talentWrapper {
+  display: flex;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .talentWrapper {
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,19 @@
+.connectorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.runeConnector {
+  height: 15px;
+  width: 100px;
+  opacity: 50%;
+  border: 1px white solid;
+}
+
+@media (max-width: 768px) {
+  .runeConnector {
+    width: 15px;
+    height: 50px;
+  }
+}

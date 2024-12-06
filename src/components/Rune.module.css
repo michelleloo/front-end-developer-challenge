@@ -1,0 +1,52 @@
+.runeSprite {
+  width: 50px;
+  height: 50px;
+  background-size: auto;
+  background-image: url("/talent-icons-sprite.png");
+}
+.runeSprite:hover {
+  cursor: pointer;
+}
+
+.runeFrame {
+  height: 58px;
+  width: 58px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+}
+
+.stack-rune {
+  background-position-x: 0px;
+}
+.food-rune {
+  background-position: -50px -50px;
+}
+.cake-rune {
+  background-position: -100px -50px;
+}
+.crown-rune {
+  background-position: -150px -50px;
+}
+.boat-rune {
+  background-position: -200px -50px;
+}
+.scuba-rune {
+  background-position: -250px -50px;
+}
+.lightning-rune {
+  background-position: -300px -50px;
+}
+.skull-rune {
+  background-position: -350px -50px;
+}
+.runeActive {
+  background-position-y: 0px;
+}
+.runeUnlocked:hover {
+  background-position-y: 0px;
+}
+.hasPoints {
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}

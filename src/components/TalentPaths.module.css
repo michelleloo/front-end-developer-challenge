@@ -1,0 +1,31 @@
+.pathContainer {
+  display: flex;
+}
+.pathTitleContainer {
+  height: 100%;
+  align-self: center;
+  margin: 30px;
+}
+.pathTree {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 30px;
+}
+.runePathContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .pathContainer {
+    flex-direction: column;
+  }
+  .pathTree {
+    flex-direction: column;
+  }
+  .runePathContainer {
+    flex-direction: column;
+  }
+}
