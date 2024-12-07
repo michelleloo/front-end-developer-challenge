@@ -7,7 +7,7 @@ const RuneConnector = ({ enabled }: RuneConnectorProps) => {
     <div className={styles.connectorContainer}>
       <div
         className={styles.runeConnector}
-        style={{ backgroundColor: enabled ? "blue" : "none" }}
+        style={{ opacity: enabled ? 1 : 0.5 }}
       ></div>
     </div>
   );

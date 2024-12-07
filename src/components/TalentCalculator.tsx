@@ -10,26 +10,30 @@ const TalentCalculator = () => {
   return (
     <div className={styles.calculatorContainer}>
       {error && <div>Error</div>}
-      {loading && <div>Rune Calculator Loading ....</div>}
       <div className={styles.titleWrapper}>
-        <h1 aria-label="Rune Mastery Loadout Talent Calculator 9000">
-          Rune Mastery Loadout Talent Calculator 9000
+        <h1 aria-label="TitanStar Legends - Rune Mastery Loadout Talent Calculator 9000">
+          TitanStar Legends - Rune Mastery Loadout Talent Calculator 9000
         </h1>
       </div>
-      <div className={styles.talentWrapper}>
-        <div className={styles.talentPaths}>
-          {talentPaths?.map((talent) => (
-            <TalentPath
-              talentPath={talent}
-              unlockRune={unlockRune}
-              key={talent.pathId}
-              aria-label={`Talent path: ${talent.pathName}`}
-            />
-          ))}
+      {loading ? (
+        <div>Rune Calculator Loading ....</div>
+      ) : (
+        <div className={styles.talentWrapper}>
+          <div className={styles.talentPaths}>
+            {talentPaths?.map((talent) => (
+              <TalentPath
+                talentPath={talent}
+                unlockRune={unlockRune}
+                key={talent.pathId}
+                aria-label={`Talent path: ${talent.pathName}`}
+              />
+            ))}
+          </div>
+          <PointCounter freePoints={freePoints} maxPoints={maxPoints} />
         </div>
-        <PointCounter freePoints={freePoints} maxPoints={maxPoints} />
-      </div>
+      )}
     </div>
   );
 };
+
 export default TalentCalculator;

@@ -15,7 +15,7 @@ const PointCounter = ({ freePoints, maxPoints }: PointCounterProps) => {
           {freePoints}/{maxPoints}
         </span>
       </div>
-      <p>Points Spent</p>
+      <span className={styles.pointSpentLabel}>Points Spent</span>
     </div>
   );
 };

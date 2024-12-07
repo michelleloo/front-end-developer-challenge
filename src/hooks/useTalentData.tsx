@@ -6,6 +6,7 @@ import {
   handleLockPath,
   handleUnlockPath,
 } from "./utils/runeUtils";
+
 const useTalentData = () => {
   const [talentPaths, setTalentPaths] = useState<TalentPathData[]>();
   const [maxPoints, setMaxPoints] = useState<number>(0);

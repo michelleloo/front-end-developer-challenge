@@ -6,6 +6,10 @@
   align-self: center;
   margin: 30px;
 }
+.pathTitleContainer h2 {
+  font-size: 13px;
+  font-weight: 300;
+}
 .pathTree {
   display: flex;
   flex-direction: row;
@@ -28,7 +32,4 @@
   .runePathContainer {
     flex-direction: column;
   }
-}
-.aaaaaa {
-  flex-direction: column;
 }
