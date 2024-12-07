@@ -1,100 +1,86 @@
 import { TalentPathData, RuneData } from "../../types/TalentCalculatorTypes";
 
-/**
- * enableRune
- * 
- * @param path - 
- * @param runeId - 
- * @param endPoints - 
- * @returns 
- */
-export const enableRune = (path: TalentPathData, runeId: string, endPoints: boolean) => {
+  export const toggleRune = (
+    path: TalentPathData,
+    runeId: string,
+    enable: boolean,
+    endPoints: boolean
+  ): TalentPathData => {
     const runeIndex = path.runes.findIndex((rune) => rune.runeId === runeId);
-    if (runeIndex !== -1 && path.runes[runeIndex].isUnlocked) {
-      return {
-        ...path,
-        runes: path.runes.map((rune, idx) => {
-          if (idx === runeIndex) {
-            return {
-              ...rune,
-              enable: true,
-              isUnlocked: true,
-            }; // Unlock current rune
-          } else if (idx === runeIndex - 1) {
-            return {
-              ...rune,
-              isUnlocked: false,
-            }; // Disable previous rune
-          } else if (idx === runeIndex + 1 && !endPoints) {
-            return { ...rune, canEnable: true }; // Enable next rune if there are free points
-          }
-          return rune;
-        }),
-      };
-    }
-    return path;
-  };
   
-export const disableRune = (path: TalentPathData, runeId: string) => {
-    const runeIndex = path.runes.findIndex((rune) => rune.runeId === runeId);
-    if (runeIndex !== -1 && path.runes[runeIndex].isUnlocked) {
-      return {
-        ...path,
-        runes: path.runes.map((rune, idx) => {
-          if (idx === runeIndex) {
-            return {
-              ...rune,
-              enable: false,
-              isUnlocked: true
-            }; // Disable current rune
-          } else if (idx === runeIndex - 1) {
-            return {
-              ...rune,
-              isUnlocked: true,
-            }; // Allow disable of previous rune
-          }
-          else if (idx === runeIndex + 1 && !rune.enable) {
-            return {
-              ...rune,
-              isUnlocked: false,
-            }; // Disable previous rune
-          }
-          return rune;
-        }),
-      };
+    if (runeIndex === -1 || !path.runes[runeIndex].isUnlocked) {
+      return path; 
     }
-    return path;
+  
+    return {
+      ...path,
+      runes: path.runes.map((rune, idx) => {
+        if (idx === runeIndex) {
+          // Toggle the current rune
+          return {
+            ...rune,
+            enable,
+            isUnlocked: enable || rune.isUnlocked
+          };
+        } else if (idx === runeIndex - 1) {
+          // Lock/Unlock the previous rune
+          return {
+            ...rune,
+            isUnlocked: !enable, // Unlock when disabling current rune
+          };
+        } else if (idx === runeIndex + 1 && !endPoints) {
+          // Unlock the next rune if there are still points 
+          return {
+            ...rune,
+            isUnlocked: enable, 
+          };
+        }
+        return rune; 
+      }),
+    };
   };
- 
-  //Unlock the rune
-  const unlockRune = (
-    runes: RuneData[], 
-    runeId: string, 
-    parentId: string | null, 
-    limit: boolean
-  ): RuneData[] => {
-    let runeUpdate = [];
 
+  export const handleLockPath = (path: TalentPathData) =>{
+    const lastEnabledIdx = getLastEnabledRuneIndex(path.runes);
+    return {
+      ...path,
+      runes: path.runes.map((rune, idx) => {
+        if (lastEnabledIdx != idx) {
+          return {
+            ...rune,
+            isUnlocked: false,
+          };
+        }
+        return rune;
+      }),
+    };
+  }
+
+  export const handleUnlockPath = (path: TalentPathData) =>{
+    const lastEnableIdx = getLastEnabledRuneIndex(path.runes);
+      if (lastEnableIdx != -1) {
+        return {
+          ...path,
+          runes: path.runes.map((rune, idx) => {
+            if (lastEnableIdx + 1 === idx) {
+              return {
+                ...rune,
+                isUnlocked: true,
+              };
+            }
+            return rune;
+          }),
+        };
+    }
+    return path
+  }
   
-    // Find the index of the rune to unlock
-    for (const rune of runes) {
-      if (rune.runeId === runeId) {
-        unlockedRuneId = runeId;
-      }
-  
-      if (unlockedRuneId && !limit && !nextRuneId && rune.parentId === runeId) {
-        nextRuneId = rune.runeId; // Unlock the next rune in sequence
+  export const getLastEnabledRuneIndex = (runes: RuneData[]) => {
+    for (let i = runes.length - 1; i >= 0; i--) {
+      if (runes[i].enable) {
+        return i;
       }
     }
-  
-    // Update the runes based on unlocked/nextRuneId
-    return runes.map((rune) => {
-      if (rune.runeId === unlockedRuneId) {
-        return { ...rune, enable: true, isUnlocked: true };
-      } else if (rune.runeId === nextRuneId) {
-        return { ...rune, enable: true, isUnlocked: true };
-      }
-      return rune;
-    });
+    return -1; 
   };
   

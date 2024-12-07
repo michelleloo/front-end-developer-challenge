@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { TalentPathData } from "../types/TalentCalculatorTypes";
 import { fetchSkillTree } from "../mocks/talent-calculator-mock";
-import { enableRune, disableRune } from "./utils/runeUtils";
+import {
+  toggleRune,
+  handleLockPath,
+  handleUnlockPath,
+} from "./utils/runeUtils";
 const useTalentData = () => {
   const [talentPaths, setTalentPaths] = useState<TalentPathData[]>();
   const [maxPoints, setMaxPoints] = useState<number>(0);
@@ -14,37 +18,33 @@ const useTalentData = () => {
     runeId: string,
     enable: boolean
   ) => {
-    console.log(runeId);
-    //Check if there are any points left
+    // Check if there are any points left
     const newPoints = enable ? freePoints - 1 : freePoints + 1;
-    setFreePoints(newPoints);
-    setTalentPaths((prevPaths) => {
-      if (prevPaths) {
-        const newPaths = prevPaths.map((path) => {
-          if (path.pathId === talentPathId) {
-            // Handle enabling or disabling the rune
-            if (enable) {
-              return enableRune(path, runeId, newPoints === 0);
-            } else {
-              return disableRune(path, runeId);
+    if (newPoints <= maxPoints) {
+      setTalentPaths((prevPaths) => {
+        if (prevPaths) {
+          const newPaths = prevPaths.map((path) => {
+            // handle chosen path
+            if (path.pathId === talentPathId) {
+              return toggleRune(path, runeId, enable, newPoints === 0);
             }
-          }
-          // Disable `canEnable` for other paths when there are no points left
-          if (newPoints === 0) {
-            const updatedRunes = path.runes.map((rune) => ({
-              ...rune,
-              canEnable: false,
-            }));
-            return { ...path, runes: updatedRunes };
-          }
-          return path;
-        });
-
-        return newPaths;
-      } else {
-        return prevPaths;
-      }
-    });
+            // Lock other paths if no points are left
+            if (newPoints === 0) {
+              return handleLockPath(path);
+            }
+            // Unlock other paths when points go from 0 to 1
+            if (newPoints === 1) {
+              return handleUnlockPath(path);
+            }
+            return path;
+          });
+          return newPaths;
+        } else {
+          return prevPaths;
+        }
+      });
+      setFreePoints(newPoints);
+    }
   };
 
   useEffect(() => {

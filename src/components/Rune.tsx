@@ -8,13 +8,18 @@ type RuneProps = {
 };
 
 const Rune = ({ rune, talentPath, unlockRune }: RuneProps) => {
-  const handleRightClick = (e) => {
+  const handleRightClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (rune.isUnlocked && rune.enable) {
+    if (rune.enable && rune.isUnlocked) {
       unlockRune(talentPath, rune.runeId, false);
     }
   };
-
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (rune.isUnlocked && !rune.enable) {
+      unlockRune(talentPath, rune.runeId, true);
+    }
+  };
   return (
     <div
       className={`${styles.runeFrame} ${
@@ -25,9 +30,9 @@ const Rune = ({ rune, talentPath, unlockRune }: RuneProps) => {
         className={`${styles.runeSprite} ${styles[rune.runeName]} ${
           rune.enable && styles.runeActive
         }  ${!rune.enable && rune.isUnlocked && styles.runeUnlocked}`}
-        disabled={!rune.isUnlocked}
+        disabled={!rune.isUnlocked || rune.enable}
         aria-label={`Activate ${rune.runeName}`}
-        onClick={() => unlockRune(talentPath, rune.runeId, true)}
+        onClick={handleClick}
         onContextMenu={handleRightClick}
       ></button>
     </div>

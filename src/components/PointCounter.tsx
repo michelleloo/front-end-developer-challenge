@@ -8,7 +8,10 @@ const PointCounter = ({ freePoints, maxPoints }: PointCounterProps) => {
   return (
     <div className={styles.pointCounterContainer}>
       <div>
-        <span className="counter-value">
+        <span
+          className={styles.pointCounterText}
+          aria-label={`Points spent: ${freePoints} out of ${maxPoints}`}
+        >
           {freePoints}/{maxPoints}
         </span>
       </div>

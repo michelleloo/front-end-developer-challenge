@@ -9,7 +9,9 @@ const TalentCalculator = () => {
   return (
     <div className={styles.calculatorContainer}>
       <div className={styles.titleWrapper}>
-        <h1>Rune Mastery Loadout Talent Calculator 9000</h1>
+        <h1 aria-label="Rune Mastery Loadout Talent Calculator 9000">
+          Rune Mastery Loadout Talent Calculator 9000
+        </h1>
       </div>
       <div className={styles.talentWrapper}>
         <div className={styles.talentPaths}>
@@ -18,6 +20,7 @@ const TalentCalculator = () => {
               talentPath={talent}
               unlockRune={unlockRune}
               key={talent.pathId}
+              aria-label={`Talent path: ${talent.pathName}`}
             />
           ))}
         </div>

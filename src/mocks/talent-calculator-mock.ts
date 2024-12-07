@@ -2,7 +2,7 @@ import { SkillTree } from "../types/TalentCalculatorTypes";
 
 const talentCalculatorMock: SkillTree = {
     freePoints: 3,
-    maxPoints: 5,
+    maxPoints: 6,
     talentPaths: [
       {
         pathName: "TALENT PATH 1",

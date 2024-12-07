@@ -14,11 +14,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
 }
-
+.hasPoints {
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
 .stack-rune {
-  background-position-x: 0px;
+  background-position: 0px -50px;
 }
 .food-rune {
   background-position: -50px -50px;
@@ -46,7 +47,4 @@
 }
 .runeUnlocked:hover {
   background-position-y: 0px;
-}
-.hasPoints {
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
