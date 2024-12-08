@@ -3,6 +3,8 @@ Welcome to my frontend developer challenge
 
 Link to original repo: [frontend-developer-challenge](https://github.com/DnDBeyond/front-end-developer-challenge)
 
+Link to hosted project: [Link](https://front-end-developer-challenge-omega.vercel.app/)
+
 This project was created using Vite, CSS Modules.
 Custom hooks were used to manage tracking the rune states. See  `hooks/useTalentData.tsx`
 
