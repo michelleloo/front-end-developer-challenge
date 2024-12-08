@@ -7,15 +7,15 @@ export type PointCounterProps = {
 const PointCounter = ({ freePoints, maxPoints }: PointCounterProps) => {
   return (
     <div className={styles.pointCounterContainer}>
-      <div>
+      <div className={styles.textWrapper}>
         <span
           className={styles.pointCounterText}
           aria-label={`Points spent: ${freePoints} out of ${maxPoints}`}
         >
           {freePoints}/{maxPoints}
         </span>
+        <span className={styles.pointSpentLabel}>Points Spent</span>
       </div>
-      <span className={styles.pointSpentLabel}>Points Spent</span>
     </div>
   );
 };

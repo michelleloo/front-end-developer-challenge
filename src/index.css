@@ -7,9 +7,9 @@
   --bg-color: #242424;
   --primary-blue: #6196cb;
   --frame-grey: #4e4e4e;
-  --font-blue: #32475d;
+  --points-blue: #32475d;
   --connector-grey: #313233;
-  --point-background: #050708;
+  --points-background: #050708;
 
   font-family: var(--font-family);
   font-weight: var(--font-weight);

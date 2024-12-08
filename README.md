@@ -1,3 +1,55 @@
+# Front-End Developer Challenge 
+Welcome to my frontend developer challenge
+
+Link to original repo: [frontend-developer-challenge](https://github.com/DnDBeyond/front-end-developer-challenge)
+
+This project was created using Vite, CSS Modules.
+Custom hooks were used to manage tracking the rune states. See  `hooks/useTalentData.tsx`
+
+The goal was to design reusable components that would allow some future reuse of the components (i.e Rune.tsx) for a more complex rune tree (graph or split branches)
+
+
+### Default View 
+* Left click to enable
+* Right click to disable
+
+A mock fetch exists in `mocks/talent-calculator-mocks.ts` to simulate fetching from the server with a loading state. There is a delay of 1 second
+![alt text](<assets/Screen Recording 2024-12-08 at 11.56.39 AM.gif>)
+
+### Mobile View 
+* Single tap to enable
+* Long tap to disable
+![alt text](<assets/Screen Recording 2024-12-08 at 12.07.06 PM.gif>)
+
+
+## Installation
+
+To get started with this project, clone the repository to your local machine:
+
+```bash
+git clone https://github.com/michelleloo/front-end-developer-challenge.git
+cd front-end-developer-challenge
+```
+Once you have cloned the repository install the necessary dependencies 
+
+```bash
+npm install
+```
+## Running the project
+```bash
+npm run dev
+```
+The application should now be live at http://localhost:5173/ by default. Open the URL in your browser to see the project.
+
+## Running Tests
+This project uses Vitest as a testing framework. A few test files have been created 
+`PointCounter.test.tsx` and
+`runeUtils.test.ts`
+
+To run the tests run 
+```bash
+npm run test
+```
 # Front-End Developer Challenge
 In this repo you will find a mock-up and all the necessary assets (in a separate folder). The design is of a tool for a fictitious game called “TitanStar Legends”, and will not be repurposed or otherwise utilized by D&D Beyond – it is only a coding challenge.
 

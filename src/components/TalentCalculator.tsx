@@ -2,6 +2,7 @@ import useTalentData from "../hooks/useTalentData";
 import PointCounter from "./PointCounter";
 import TalentPath from "./TalentPath";
 import styles from "./TalentCalculator.module.css";
+import LoadingSpinner from "./LoadingSpinner";
 
 const TalentCalculator = () => {
   const { freePoints, maxPoints, talentPaths, unlockRune, loading, error } =
@@ -16,7 +17,7 @@ const TalentCalculator = () => {
         </h1>
       </div>
       {loading ? (
-        <div>Rune Calculator Loading ....</div>
+        <LoadingSpinner />
       ) : (
         <div className={styles.talentWrapper}>
           <div className={styles.talentPaths}>

@@ -4,13 +4,28 @@
   align-items: center;
   justify-content: center;
   font-size: 23px;
+}
+.textWrapper {
   background-color: var(--points-background);
+  padding: 0.5rem;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 .pointSpentLabel {
-  color: var(--font-blue);
+  color: var(--points-blue);
 }
 @media (max-width: 768px) {
   .pointCounterContainer {
     font-size: 1rem;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    width: calc(100% - 4rem);
+  }
+  .textWrapper {
+    border-radius: 0px;
+    width: 100%;
   }
 }

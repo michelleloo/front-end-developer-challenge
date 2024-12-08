@@ -19,7 +19,6 @@ const useTalentData = () => {
     runeId: string,
     enable: boolean
   ) => {
-    // Check if there are any points left
     const newPoints = enable ? freePoints - 1 : freePoints + 1;
     if (newPoints <= maxPoints) {
       setTalentPaths((prevPaths) => {
@@ -29,7 +28,7 @@ const useTalentData = () => {
             if (path.pathId === talentPathId) {
               return toggleRune(path, runeId, enable, newPoints === 0);
             }
-            // Lock other paths if no points are left
+            // Lock other paths when 0 free points
             if (newPoints === 0) {
               return handleLockPath(path);
             }

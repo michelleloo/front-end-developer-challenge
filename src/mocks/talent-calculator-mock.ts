@@ -27,7 +27,7 @@ const talentCalculatorMock: SkillTree = {
     ]
 }
 
-//Mock to simulate fetching the data
+//Mock to simulate fetching the data - 1 second delay
 export const fetchSkillTree = async (): Promise<SkillTree> => {
     return new Promise((resolve) => {
       setTimeout(() => {

@@ -16,20 +16,17 @@ import { TalentPathData, RuneData } from "../../types/TalentCalculatorTypes";
       ...path,
       runes: path.runes.map((rune, idx) => {
         if (idx === runeIndex) {
-          // Toggle the current rune
           return {
             ...rune,
             enable,
             isUnlocked: enable || rune.isUnlocked
           };
         } else if (idx === runeIndex - 1) {
-          // Lock/Unlock the previous rune
           return {
             ...rune,
-            isUnlocked: !enable, // Unlock when disabling current rune
+            isUnlocked: !enable, 
           };
         } else if (idx === runeIndex + 1 && !endPoints) {
-          // Unlock the next rune if there are still points 
           return {
             ...rune,
             isUnlocked: enable, 
